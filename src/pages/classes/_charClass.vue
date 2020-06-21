@@ -17,11 +17,9 @@ export default {
   components: {
     FeatureList,
   },
-  async asyncData({ params }) {
+  async asyncData({ params, app }) {
     try {
-      return {
-        charClass: await import(`~/content/classes/${params.charClass}.json`),
-      };
+      return { charClass: await app.charClass(params.charClass) };
     } catch (err) {
       console.error(err);
       return false;

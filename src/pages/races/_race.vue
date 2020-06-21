@@ -26,9 +26,9 @@ export default {
   components: {
     FeatureList,
   },
-  async asyncData({ params }) {
+  async asyncData({ params, app }) {
     try {
-      return { race: await import(`~/content/races/${params.race}.json`) };
+      return { race: await app.race(params.race) };
     } catch (err) {
       console.error(err);
       return false;
